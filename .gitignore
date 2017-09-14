@@ -1,0 +1,20 @@
+# Ignore generated files
+
+*.pdf
+*.aux
+*.log
+*.auxlock
+*.fls
+*.fmt
+.sconsign.dblite
+*.pyc
+*/*.pyc
+build/*
+.refresh
+*.fdb_latexmk
+
+# Ignore local properties
+local.properties
+
+# logo pdf is to be added
+!comsats-logo.pdf
