@@ -1,0 +1,8 @@
+% Tikz externalization and its external system call cannot be part of the static preamble so it is placed here, after the preamble is loaded.
+
+% By default the externalization runs in batchmode which means no logs are generated on the terminal. Since we are interested in figuring out the error immediately we run the externalized compilation in 'nonstopmode'
+% Note: We expliclity declare the fmt (preamble) file in the system call so that the externalized tikz compilation can gain the tremendous speed-up from preamble precompilation
+\tikzset{external/system call={pdflatex -fmt=preamble.fmt \tikzexternalcheckshellescape -halt-on-error -interaction=nonstopmode -jobname "\image" "\texsource"}}
+% \tikzset{external/system call={pdflatex -fmt=preamble.fmt \tikzexternalcheckshellescape -shell-escape -halt-on-error -interaction=nonstopmode -jobname "\image" "\texsource"}}
+
+\tikzexternalize[prefix=build/]     % Activate image externalization
