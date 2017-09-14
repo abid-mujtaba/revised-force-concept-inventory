@@ -9,7 +9,6 @@
 .sconsign.dblite
 *.pyc
 */*.pyc
-build/*
 .refresh
 *.fdb_latexmk
 
