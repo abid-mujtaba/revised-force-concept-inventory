@@ -30,7 +30,7 @@ $(MAIN).pdf: $(MAIN).tex .refresh $(SOURCES) $(FIGURES) preamble.fmt
 
 
 # Compile the preamble
-preamble.fmt: preamble.tex
+preamble.fmt: preamble.tex quiz.sty abid-base.sty test-base.sty
 		pdftex -ini -jobname=preamble "&pdflatex preamble.tex\dump"
 
 

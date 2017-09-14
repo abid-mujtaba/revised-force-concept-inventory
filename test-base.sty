@@ -1,0 +1,28 @@
+% We define all style related instructions that are common to formating both
+% Quizzes and Exams inside this package
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{test-base}[2016/10/12]
+
+% Declare abid-base as a dependency so that all of its packages and commands are pulled in
+\usepackage{abid-base}
+
+
+% Provide a new \makesolution command which sets up the final section for providing the solution to the quiz
+\newcommand{\makesolution}{
+    \vspace{0.5\baselineskip}
+    \begin{center}\rule{0.8\linewidth}{0.5pt}\end{center}
+    \vspace{0.5\baselineskip}
+    \textbf{\large Solution:}
+}
+
+% Define a command for entering questions. It uses a tabularx to format the Q.# part and the actual question
+% @{} is used to indicate that horizontal padding is to be zero around the tabularx
+% X is used to indicate the the second column should be stretched to fill up horizontal space.
+\newcommand{\question}[2]{
+    \begin{tabularx}{\textwidth}{@{}l X@{}}
+        \textbf{#1} & #2
+    \end{tabularx}
+}                                                  % Place the question number in bold font with a little space after it
+
+\renewcommand{\marks}[1]{\vspace{-0.5\baselineskip}\begin{flushright}$[#1]$\end{flushright}}        % Place the marks below and aligned right
