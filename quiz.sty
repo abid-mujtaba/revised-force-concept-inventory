@@ -73,4 +73,12 @@
       \end{minipage}
    }
 
+% Create an mcq macro that encapsulates the question inside a vbox so that it isn't split across pages.
+\newcommand{\mcq}[3]{%
+  \vbox{
+    \question{#1}{#2}
+          #3
+    }
+}
+
 \makeatother        % Stop treating @ as a normal character
