@@ -48,6 +48,7 @@
 % @{} is used to indicate that horizontal padding is to be zero around the tabularx
 % X is used to indicate the the second column should be stretched to fill up horizontal space.
 \newcommand{\question}[2]{
+    \vspace{1.5\baselineskip}
     \begin{tabularx}{\textwidth}{@{}l X@{}}
         \textbf{#1} & #2
     \end{tabularx}
