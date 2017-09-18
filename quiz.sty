@@ -56,6 +56,18 @@
 \renewcommand{\marks}[1]{\vspace{-0.5\baselineskip}\begin{flushright}$[#1]$\end{flushright}}        % Place the marks below and aligned right
 
 
-\newenvironment{options}[1]{\hspace{5em}\begin{minipage}{0.8\textwidth}\begin{enumerate}[(A)]\setlength{\itemsep}{0.5\baselineskip}}{\end{enumerate}\end{minipage}}
+% Define a custom environment for setting the answers/options for each MCQ.
+% We use an indented minipage containing an 'enumerate' environment.
+\newenvironment{options}%
+   {
+      \hspace{5em}%
+      \begin{minipage}{0.8\textwidth}
+         \begin{enumerate}[(A)]
+            \setlength{\itemsep}{0.5\baselineskip}
+   }%
+   {
+         \end{enumerate}
+      \end{minipage}
+   }
 
 \makeatother        % Stop treating @ as a normal character
