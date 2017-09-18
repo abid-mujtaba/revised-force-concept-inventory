@@ -73,12 +73,24 @@
       \end{minipage}
    }
 
-% Create an mcq macro that encapsulates the question inside a vbox so that it isn't split across pages.
-\newcommand{\mcq}[3]{%
-  \vbox{
-    \question{#1}{#2}
-          #3
-    }
+
+% Create a custom MCQ environment that takes the question number and statement and encapsulates the \item options/answers
+% It uses an encapsulating vbox to ensure that the entire question is never broken across a page break
+\newenvironment{mcq}[2]%
+{
+    \vbox\bgroup            % Inside the newenvironment definition we use \bgroup and \egroup to break the \vbox{} across the two ends of the environment
+        \question{#1}{#2}   % Place the question first
+
+        \hspace{5em}%       % Indents the options/answers
+        \begin{minipage}{0.8\textwidth}
+           \begin{enumerate}[(A)]
+              \setlength{\itemsep}{0.5\baselineskip}
+}%
+{
+
+           \end{enumerate}
+        \end{minipage}
+    \egroup
 }
 
 \makeatother        % Stop treating @ as a normal character
