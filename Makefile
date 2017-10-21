@@ -10,8 +10,7 @@ CONTINUOUS=
 
 MAIN=test
 SOURCES=$(MAIN).tex Makefile preamble.tex
-#FIGURES := $(shell find data/*.pdf diag/*.pdf -type f)
-FIGURES=
+FIGURES := $(shell find diag/*.tex -type f)
 
 
 all: show
