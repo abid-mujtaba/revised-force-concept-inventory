@@ -21,4 +21,22 @@
         (\ro,0) node[anchor=west] {$R$} arc (0:\ae:\ro)
     ;
 
+    % Draw path arrows
+    \draw[semithick, -{Stealth[scale=1.3]}]
+        (\rc, \rb) coordinate (ps) -- ++ (0, 3) node[anchor=south] {$(B)$};
+
+    \draw[semithick, -{Stealth[scale=1.3]}]
+        (ps) arc (0:90:\rc) node[anchor=east] {$(A)$};
+
+    \draw[semithick, -{Stealth[scale=1.3]}]
+        (ps) arc (180:120:{(\rc * 1.5)}) node[anchor=west] {$(C)$};
+
+    % Note the use of Bezier curve (using two control points) to create the curve
+    % The first control point is straight up so that the curve starts pointing up
+    \draw[semithick, -{Stealth[scale=1.3]}]
+        (ps) .. controls (\rc, 1) and (3,2) .. ({(\rc * 2)}, 2) node[anchor=west] {$(D)$};
+
+    \draw[semithick, -{Stealth[scale=1.3]}]
+        (ps) .. controls (\rc, 1) and (3,1.25) .. ({(\rc * 2)}, 1.25) node[anchor=west] {$(E)$};
+
 \end{tikzpicture}
