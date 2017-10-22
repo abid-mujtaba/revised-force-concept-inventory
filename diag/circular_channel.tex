@@ -6,7 +6,7 @@
     \def\ri{2}
     \def\ro{\ri * 1.3}      % Set outer radius as 30% larger than the inner radius
     \def\ae{-230}           % Angle at end of channel (P)
-    \def\aq{-120}           % Angle for point Q
+    \def\aq{{(\ae * 0.5)}}           % Angle for point Q
 
     % Calculate middle of the two radii
     \def\rc{{(\ri + \ro) * 0.5}}        % Note the extra curly braces to encapsulate the arithmetic
@@ -26,11 +26,15 @@
 
     % Use the arrows.meta tikz library to change the shape and increase size of arrow-head
     % Arcs with arrows to show path of ball inside channel.
+    \def\aa{{(\ae + 20)}}
+    \def\ab{{(\aq - 20)}}
     \draw[semithick, -{Stealth[scale=1.3]}]
-        (-210:\rc) arc (-210:-140:\rc);
+        (\aa:\rc) arc (\aa:\ab:\rc);
 
+    \def\aa{{(\aq + 20)}}
+    \def\ab{{(0 - 20)}}
     \draw[semithick, -{Stealth[scale=1.3]}]
-        (-100:\rc) arc (-100:-20:\rc)
+        (\aa:\rc) arc (\aa:\ab:\rc)
     ;
 
     % Arrow pointing out of R
