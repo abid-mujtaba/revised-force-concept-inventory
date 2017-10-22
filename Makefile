@@ -1,6 +1,5 @@
 LATEX=pdflatex
-LATEXOPT=--shell-escape
-NONSTOP=--interaction=nonstopmode
+LATEXOPT=--shell-escape --interaction=nonstopmode -halt-on-error
 
 LATEXMK=latexmk
 LATEXMKOPT=-pdf
@@ -25,7 +24,7 @@ show: $(MAIN).pdf
 
 
 $(MAIN).pdf: $(MAIN).tex .refresh $(SOURCES) $(FIGURES) preamble.fmt
-		$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) -pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(MAIN)
+		$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) -pdflatex="$(LATEX) $(LATEXOPT) %O %S" $(MAIN)
 
 
 # Compile the preamble
