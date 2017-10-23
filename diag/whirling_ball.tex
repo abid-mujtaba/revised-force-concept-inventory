@@ -2,6 +2,8 @@
 
 \begin{tikzpicture}
 
+    \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
+    \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
     \def\rc{2}      % Radius of circle (path)
 
     % Use node to include the person-top tikzpicture
@@ -10,18 +12,16 @@
     };
 
     \draw[fill=black]
-        (-45:\rc) coordinate (ball) circle (4pt)
-    ;
+        (-45:\rc) coordinate (ball) circle (4pt);
 
-    \draw[semithick]
-        (0.5,-0.5) -- (ball)
-    ;
+    \draw
+        (0.5,-0.5) -- (ball);
 
-    \draw[semithick, dashed, -{Stealth[scale=1.3]}] (ball) arc (-45:0:\rc) coordinate (a1);
-    \draw[semithick, dashed, -{Stealth[scale=1.3]}] (a1) arc (0:90:\rc) coordinate (a2);
-    \draw[semithick, dashed, -{Stealth[scale=1.3]}] (a2) arc (90:180:\rc) coordinate (a3);
-    \draw[semithick, dashed, -{Stealth[scale=1.3]}] (a3) arc (180:270:\rc) coordinate (a4);
-    \draw[semithick, dashed] (a4) arc (270:315:\rc);
+    \draw[dashed, ->] (ball) arc (-45:0:\rc) coordinate (a1);
+    \draw[dashed, ->] (a1) arc (0:90:\rc) coordinate (a2);
+    \draw[dashed, ->] (a2) arc (90:180:\rc) coordinate (a3);
+    \draw[dashed, ->] (a3) arc (180:270:\rc) coordinate (a4);
+    \draw[dashed] (a4) arc (270:315:\rc);
 
 
 \end{tikzpicture}
