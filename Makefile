@@ -9,7 +9,8 @@ CONTINUOUS=
 
 MAIN=test
 SOURCES=$(MAIN).tex Makefile preamble.tex
-FIGURES := $(shell find diag/*.tex -type f)
+# Since the -svg.tex files are created from the .svg files in diag/svg/ we use a shell command to analyze the contents of diag/svg/ and construct a list of -svg.tex files that will be created from them. This allows us to declare these as dependencies of the main tex file.
+FIGURES := $(shell find diag/*.tex -type f) $(shell find diag/svg/*.svg -type f | cut -d'/' -f3- | sed 's/.svg/-svg.tex/' | sed 's:^:diag/:')
 
 
 all: show
@@ -32,40 +33,10 @@ preamble.fmt: preamble.tex quiz.sty abid-base.sty test-base.sty
 		pdftex -ini -jobname=preamble "&pdflatex preamble.tex\dump"
 
 
-# Generate eps files from pdf files using 'pdftops'
-AbidHMujtabaFig00.eps: diag/circuit-resistors.pdf
-	pdftops -eps $< $@
+# Convert svg images to tex files using svg2tikz
+diag/%-svg.tex: diag/svg/%.svg
+		svg2tikz --figonly -o $@ $<
 
-AbidHMujtabaFig01a.eps: data/bar_binary.pdf
-	pdftops -eps $< $@
-
-AbidHMujtabaFig01b.eps: data/bar_descriptive.pdf
-	pdftops -eps $< $@
-
-AbidHMujtabaFig01c.eps: data/bar_computational.pdf
-	pdftops -eps $< $@
-
-AbidHMujtabaFig01d.eps: data/bar_total.pdf
-	pdftops -eps $< $@
-
-AbidHMujtabaFig02a.eps: data/scatter_bin_des.pdf
-	pdftops -eps $< $@
-
-AbidHMujtabaFig02b.eps: data/scatter_com_des.pdf
-	pdftops -eps $< $@
-
-AbidHMujtabaFig02c.eps: data/scatter_com_bin.pdf
-	pdftops -eps $< $@
-
-AbidHMujtabaFig03.eps: diag/venn.pdf
-	pdftops -eps $< $@
-
-
-force:
-		touch .refresh
-		rm $(MAIN).pdf
-		$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) \
-			-pdflatex="$(LATEX) $(LATEXOPT) %O %S" $(MAIN)
 
 clean:
 		$(LATEXMK) -C $(MAIN)
@@ -75,17 +46,10 @@ clean:
 		rm -f *.eps *-converted-to.pdf
 		rm -f *.bib
 
-once:
-		$(LATEXMK) $(LATEXMKOPT) -pdflatex="$(LATEX) $(LATEXOPT) %O %S" $(MAIN)
 
 debug:
 		$(LATEX) $(LATEXOPT) $(MAIN)
 
-cover: cover-letter.pdf
-	vupdf cover-letter.pdf
 
-cover-letter.pdf: cover-letter.md Makefile
-	pandoc -V papersize:letter -V geometry:margin=1in -V fontsize=12pt -o cover-letter.pdf cover-letter.md
-
-.PHONY: clean force once all show cover
+.PHONY: clean all show
 # Source: https://drewsilcock.co.uk/using-make-and-latexmk

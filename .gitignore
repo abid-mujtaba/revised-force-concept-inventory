@@ -17,3 +17,6 @@ local.properties
 
 # logo pdf is to be added
 !comsats-logo.pdf
+
+# Ignore tex diagrams generated from svg
+diag/*-svg.tex
