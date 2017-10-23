@@ -11,11 +11,8 @@
         \input{diag/person-top-svg}
     };
 
-    \draw[fill=black]
-        (-45:\rc) coordinate (ball) circle (4pt);
-
-    \draw
-        (0.5,-0.5) -- (ball);
+    \draw[fill=black] (-45:\rc) coordinate (ball) circle (4pt);
+    \draw (0.52,-0.52) -- (ball);
 
     \draw[dashed, ->] (ball) arc (-45:0:\rc) coordinate (a1);
     \draw[dashed, ->] (a1) arc (0:90:\rc) coordinate (a2);
@@ -23,5 +20,12 @@
     \draw[dashed, ->] (a3) arc (180:270:\rc) coordinate (a4);
     \draw[dashed] (a4) arc (270:315:\rc);
 
+    \draw[->] (ball) arc (-45:0:{(\rc * 2)}) node[anchor=south] {$(A)$};
+    \draw[->, rotate=45, shift={(ball)}]
+        (0,0) -- (3,0) node[anchor=south west] {$(B)$};
+    \draw[->] (ball) -- ++ (1.75,0) node[anchor=west, xshift=-3pt] {$(C)$};
+    \draw[->] (ball) arc (225:315:\rc) node[anchor=south west, xshift=-4pt, yshift=-4pt] {$(D)$};
+    \draw[->, rotate=-45, shift={(ball)}]
+        (0,0) -- (3,0) node[anchor=north west] {$(E)$};
 
 \end{tikzpicture}
