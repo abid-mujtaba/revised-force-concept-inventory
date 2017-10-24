@@ -1,0 +1,17 @@
+\tikzsetnextfilename{carrom_kick}
+
+\begin{tikzpicture}
+
+    \draw[semithick, dashed, -{Stealth[scale=1.3]}]
+        (0,0) node[anchor=east] {$P$} -- (3,0);
+
+    \draw[semithick, dashed]
+        (3,0) -- (6,0) node[anchor=west, xshift=10] {$Q$};
+
+    \fill[black]
+        (6,0) circle (10pt);
+
+    \fill[black, scale=0.2, shift={(30,-10)}]
+        (0,6) -- (2,3) -- (0.8,3) -- (0.8,0) -- (-0.8,0) -- (-0.8,3) -- (-2,3) -- (0,6);
+
+\end{tikzpicture}
