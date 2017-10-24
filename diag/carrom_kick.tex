@@ -1,17 +1,27 @@
 \tikzsetnextfilename{carrom_kick}
 
+\usetikzlibrary{decorations.markings}
+
 \begin{tikzpicture}
 
-    \draw[semithick, dashed, -{Stealth[scale=1.3]}]
-        (0,0) node[anchor=east] {$P$} -- (3,0);
+    \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
+    \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
 
-    \draw[semithick, dashed]
-        (3,0) -- (6,0) node[anchor=west, xshift=10] {$Q$};
+    \begin{scope}[decoration={markings,
+                              mark=at position 0.33 with {\arrow{>}},
+                              mark=at position 0.66 with {\arrow{>}}
+                             }]
+
+        \draw[dashed, postaction={decorate}]
+            (0,0) node[anchor=east] {$P$} -- (6,0) node[anchor=west, xshift=10] {$Q$};
+    \end{scope}
 
     \fill[black]
         (6,0) circle (10pt);
 
-    \fill[black, scale=0.2, shift={(30,-10)}]
+    % The first shift happens on the outside scale so we move to the right by 6 units
+    % The second shift happens on the inside scale so we move down by -9 to compensate for the 6 unit (internal height) of the arrow (on the outside scale this would be 6 * 0.2 = 1.2 units height)
+    \fill[black, shift={(6,0)}, scale=0.2, shift={(0,-9)}]
         (0,6) -- (2,3) -- (0.8,3) -- (0.8,0) -- (-0.8,0) -- (-0.8,3) -- (-2,3) -- (0,6);
 
 \end{tikzpicture}
