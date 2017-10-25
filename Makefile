@@ -10,7 +10,8 @@ CONTINUOUS=
 MAIN=test
 SOURCES=$(MAIN).tex Makefile preamble.tex
 # Since the -svg.tex files are created from the .svg files in diag/svg/ we use a shell command to analyze the contents of diag/svg/ and construct a list of -svg.tex files that will be created from them. This allows us to declare these as dependencies of the main tex file.
-FIGURES := $(shell find diag/*.tex -type f) $(shell find diag/svg/*.svg -type f | cut -d'/' -f3- | sed 's/.svg/-svg.tex/' | sed 's:^:diag/:')
+# To use tikz externalization we make any built pdf files dependencies of the main file.
+FIGURES := $(shell find diag/*.tex -type f) $(shell find build/*.pdf -type f) $(shell find diag/svg/*.svg -type f | cut -d'/' -f3- | sed 's/.svg/-svg.tex/' | sed 's:^:diag/:')
 
 
 all: show
@@ -36,6 +37,12 @@ preamble.fmt: preamble.tex quiz.sty abid-base.sty test-base.sty
 # Convert svg images to tex files using svg2tikz
 diag/%-svg.tex: diag/svg/%.svg
 		svg2tikz --figonly -o $@ $<
+
+
+# Explicit dependence of the built pdf files on the tex files. If the tex file is change we delete the corresponding pdf to force latex to build it again
+build/%.pdf: diag/%.tex
+		rm -f $@
+		rm -f $(MAIN).pdf
 
 
 clean:
