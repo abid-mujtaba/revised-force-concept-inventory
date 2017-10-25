@@ -1,0 +1,20 @@
+\tikzsetnextfilename{carrom_paths}
+
+\def\br{0.35}
+
+% Define the common elements of the drawing
+\newdrawing{\incoming}{%
+    \draw[dashed, ->] (-1.5,0) -- ({(0 - \br)},0);
+
+    \fill[black] (0,0) node[anchor=west, xshift=10] {$Q$} circle (\br);
+}
+
+
+\begin{tikzpicture}
+
+    \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
+    \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
+
+    \incoming
+
+\end{tikzpicture}
