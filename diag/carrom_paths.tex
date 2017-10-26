@@ -7,6 +7,11 @@
     \draw[dashed, ->] (-1.5,0) -- ({(0 - \br)},0);
 
     \fill[black] (0,0) node[anchor=west, xshift=10] {$Q$} circle (\br);
+
+    % The latter shift is on the inner scale and pushes the tip to (0,0)
+    % The first shift works on the outer scale and shifts the tip down below the circle
+    \fill[black, shift={(0,{(-1.5 * \br)})}, scale=0.2, shift={(0,-6)}]
+        (0,6) -- (2,3) -- (0.8,3) -- (0.8,0) -- (-0.8,0) -- (-0.8,3) -- (-2,3) -- (0,6);
 }
 
 
@@ -15,7 +20,26 @@
     \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
     \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
 
+    \newdimen{\ymax}            % Max height of each sub-figure
+    \setlength{\ymax}{2cm}
+
+    \newdimen{\y}        % Running value
+
+    \newdimen{\sep}             % xshift between successive figures
+    \setlength{\sep}{3.5cm}
+
     \incoming
-    \draw[->] (0,0) -- (0,3) node[anchor=south] {$(A)$};
+    \draw[->] (0,0) -- (0,\ymax) node[anchor=south] {$(A)$};
+
+    \begin{scope}[xshift=\sep]
+        \incoming
+        \draw[->] (0,0) -- (\ymax,\ymax) node[anchor=south] {$(B)$};
+    \end{scope}
+
+    \setlength{\y}{\ymax - 0.5cm}       % Note: Needs the 'calc' package to work
+    \begin{scope}[xshift=7cm]
+        \incoming
+        \draw[->] (0,0) -- (0,\y) arc (180:90:0.5) -- ++ (0.5,0) node[anchor=south] {$(C)$};
+    \end{scope}
 
 \end{tikzpicture}
