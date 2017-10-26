@@ -6,7 +6,7 @@
 \newdrawing{\incoming}{%
     \draw[dashed, ->] (-1.5,0) -- ({(0 - \br)},0);
 
-    \fill[black] (0,0) node[anchor=west, xshift=10] {$Q$} circle (\br);
+    \fill[black] (0,0) circle (\br);
 
     % The latter shift is on the inner scale and pushes the tip to (0,0)
     % The first shift works on the outer scale and shifts the tip down below the circle
@@ -23,10 +23,8 @@
     \newdimen{\ymax}            % Max height of each sub-figure
     \setlength{\ymax}{2cm}
 
-    \newdimen{\y}        % Running value
-
     \newdimen{\sep}             % xshift between successive figures
-    \setlength{\sep}{3.5cm}
+    \setlength{\sep}{3.75cm}
 
     \incoming
     \draw[->] (0,0) -- (0,\ymax) node[anchor=south] {$(A)$};
@@ -36,10 +34,23 @@
         \draw[->] (0,0) -- (\ymax,\ymax) node[anchor=south] {$(B)$};
     \end{scope}
 
-    \setlength{\y}{\ymax - 0.5cm}       % Note: Needs the 'calc' package to work
-    \begin{scope}[xshift=7cm]
+    \begin{scope}[xshift={(\sep * 2)}]
         \incoming
-        \draw[->] (0,0) -- (0,\y) arc (180:90:0.5) -- ++ (0.5,0) node[anchor=south] {$(C)$};
+        % Note: The {\ymax - 0.5} arithmetic requires the 'calc' package to work
+        \draw[->] (0,0) -- (0,{\ymax - 0.5cm}) arc (180:90:0.5) -- ++ (0.5,0) node[anchor=south] {$(C)$};
+    \end{scope}
+
+
+    \def\pr{2};         % Radius of curved paths in D and E
+
+    \begin{scope}[xshift={(\sep * 3)}]
+        \incoming
+        \draw[->] (0,0) arc (-90:-20:\pr) node[anchor=south] {$(D)$};
+    \end{scope}
+
+    \begin{scope}[xshift={(\sep * 4)}]
+        \incoming
+        \draw[->] (0,0) arc (180:110:\pr) node[anchor=south] {$(E)$};
     \end{scope}
 
 \end{tikzpicture}
