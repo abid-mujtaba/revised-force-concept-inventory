@@ -16,11 +16,17 @@
     \fill[black] (E) circle (4pt);
 
     \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
-        \draw[postaction={decorate}] (S) -- node[anchor=north, yshift=-5pt] {$(A)$} (E) coordinate (C);      % Note the postaction that forces draw to use the decoration defined in the scope
+        \coordinate (SC) at ($(S) + (4,0)$);
+        \coordinate (SD) at ($(S) + (6,0)$);
+        \coordinate (SE) at ($(S) + (8,0)$);
+        \coordinate (EC) at (E);
+        \coordinate (ED) at ($(E) + (0,2.5)$);
+        \coordinate (EE) at ($(E) + (0,3.5)$);
+
+        \draw[postaction={decorate}] (S) -- node[anchor=north, yshift=-5pt] {$(A)$} (E);      % Note the postaction that forces draw to use the decoration defined in the scope
         \draw[postaction={decorate}] (S) .. controls ($(S) + (2,0)$) and ($(E) + (0,3)$) ..  node[anchor=north, yshift=-5pt] {$(B)$} (E);
-        \coordinate (EC) at ($(E) + (0,1)$);
-        \draw[postaction={decorate}] (S) -- ++ (3,0) coordinate (SC) .. controls ($(SC) + (2,0)$) and ($(E) + (0,4)$) ..  node[anchor=north, yshift=-5pt] {$(C)$} (EC) -- (E);
-        \draw[postaction={decorate}] (SC) -- ++ (3,0) coordinate (SD) .. controls ($(SD) + (2,0)$) and ($(EC) + (0,2)$) ..  node[anchor=north, yshift=-5pt] {$(D)$} ($(E) + (0,2.5)$) -- (EC);
-        \draw[postaction={decorate}] (SD) .. controls ($(SD) + (3,0)$) and ($(E) + (0,6)$) ..  node[anchor=north, yshift=-5pt] {$(E)$} (EC);
+        \draw[postaction={decorate}] (S) -- (SC) .. controls ($(SC) + (2,0)$) and ($(EC) + (0,3)$) ..  node[anchor=north, yshift=-5pt] {$(C)$} (EC);
+        \draw[postaction={decorate}] (SC) -- (SD) .. controls ($(SD) + (1.5,0)$) and ($(ED) + (0,1.5)$) ..  node[anchor=north, yshift=-5pt] {$(D)$} (ED) -- (EC);
+        \draw[postaction={decorate}] (SD) -- (SE) .. controls ($(SE) + (1,0)$) and ($(EE) + (0,1)$) ..  node[anchor=north, yshift=-5pt] {$(E)$} (EE) -- (ED);
     \end{scope}
 \end{tikzpicture}
