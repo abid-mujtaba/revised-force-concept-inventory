@@ -1,0 +1,21 @@
+\tikzsetnextfilename{cannon}
+
+\begin{tikzpicture}
+    \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
+    \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
+
+    \draw (-3,0) -- (0,0) coordinate -- (0,-4) -- (12,-4);
+
+    \node[scale=0.08] at (-1,0.7) {%
+        \input{diag/cannon-svg}
+    };
+
+    \coordinate (S) at (0,0.7);
+    \coordinate (E) at (10,-4);
+
+    \fill[black] (E) circle (4pt);
+
+    \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
+        \draw[postaction={decorate}] (S) -- node[anchor=north, yshift=-5pt] {$(A)$} (E) coordinate (C);      % Note the postaction that forces draw to use the decoration defined in the scope
+    \end{scope}
+\end{tikzpicture}
