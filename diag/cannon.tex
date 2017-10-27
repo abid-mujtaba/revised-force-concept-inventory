@@ -17,5 +17,10 @@
 
     \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
         \draw[postaction={decorate}] (S) -- node[anchor=north, yshift=-5pt] {$(A)$} (E) coordinate (C);      % Note the postaction that forces draw to use the decoration defined in the scope
+        \draw[postaction={decorate}] (S) .. controls ($(S) + (2,0)$) and ($(E) + (0,3)$) ..  node[anchor=north, yshift=-5pt] {$(B)$} (E);
+        \coordinate (EC) at ($(E) + (0,1)$);
+        \draw[postaction={decorate}] (S) -- ++ (3,0) coordinate (SC) .. controls ($(SC) + (2,0)$) and ($(E) + (0,4)$) ..  node[anchor=north, yshift=-5pt] {$(C)$} (EC) -- (E);
+        \draw[postaction={decorate}] (SC) -- ++ (3,0) coordinate (SD) .. controls ($(SD) + (2,0)$) and ($(EC) + (0,2)$) ..  node[anchor=north, yshift=-5pt] {$(D)$} ($(E) + (0,2.5)$) -- (EC);
+        \draw[postaction={decorate}] (SD) .. controls ($(SD) + (3,0)$) and ($(E) + (0,6)$) ..  node[anchor=north, yshift=-5pt] {$(E)$} (EC);
     \end{scope}
 \end{tikzpicture}
