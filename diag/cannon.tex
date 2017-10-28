@@ -13,23 +13,28 @@
     \coordinate (S) at (0,0.7);
     \coordinate (E) at (10,-4);
 
+    \coordinate (SC) at ($(S) + (4,0)$);
+    \coordinate (SD) at ($(S) + (6,0)$);
+    \coordinate (SE) at ($(S) + (8,0)$);
+    \coordinate (EC) at (E);
+    \coordinate (ED) at ($(E) + (0,2.5)$);
+    \coordinate (EE) at ($(E) + (0,3.5)$);
+
     \fill[black] (E) circle (4pt);
 
     \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
-        \coordinate (SC) at ($(S) + (4,0)$);
-        \coordinate (SD) at ($(S) + (6,0)$);
-        \coordinate (SE) at ($(S) + (8,0)$);
-        \coordinate (EC) at (E);
-        \coordinate (ED) at ($(E) + (0,2.5)$);
-        \coordinate (EE) at ($(E) + (0,3.5)$);
 
         \draw[postaction={decorate}] (S) -- node[pos=0.1, anchor=north, yshift=-2pt] {$(A)$} (E);      % Note the postaction that forces draw to use the decoration defined in the scope
         % For (B) we calculate the quadratic that is flat at the start and goes from (S) to (E) and plot it
         \draw[postaction={decorate}, domain=0:10, smooth, variable=\x] plot ({\x}, {-47 * \x * \x / 1000 + 0.7});
         \node at (3.5,-0.2) {$(B)$};
 
-        \draw[postaction={decorate}] (S) -- (SC) .. controls ($(SC) + (2,0)$) and ($(EC) + (0,3)$) ..  node[pos=0.35, anchor=north, yshift=-2pt] {$(C)$} (EC);
-        \draw[postaction={decorate}] (SC) -- (SD) .. controls ($(SD) + (1.5,0)$) and ($(ED) + (0,1.5)$) ..  node[pos=0.55, anchor=north, yshift=-2pt] {$(D)$} (ED) -- (EC);
-        \draw[postaction={decorate}] (SD) -- (SE) .. controls ($(SE) + (1,0)$) and ($(EE) + (0,1)$) ..  node[pos=0.95, anchor=west, xshift=-2pt] {$(E)$} (EE) -- (ED);
     \end{scope}
+
+    \draw[postaction={decorate}, decoration={markings, mark=at position 0.6 with {\arrow{>}}}] (S) -- (SC) .. controls ($(SC) + (2,0)$) and ($(EC) + (0,3)$) ..  node[pos=0.35, anchor=north, yshift=-2pt] {$(C)$} (EC);
+
+    \draw[postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow{>}}}] (SC) -- (SD) .. controls ($(SD) + (1.5,0)$) and ($(ED) + (0,1.5)$) ..  node[pos=0.55, anchor=north, yshift=-2pt] {$(D)$} (ED) -- (EC);
+
+    \draw[postaction={decorate}, decoration={markings, mark=at position 0.67 with {\arrow{>}}}] (SD) -- (SE) .. controls ($(SE) + (1,0)$) and ($(EE) + (0,1)$) ..  node[pos=0.95, anchor=west, xshift=-2pt] {$(E)$} (EE) -- (ED);
+
 \end{tikzpicture}
