@@ -23,11 +23,13 @@
         \coordinate (ED) at ($(E) + (0,2.5)$);
         \coordinate (EE) at ($(E) + (0,3.5)$);
 
-        \draw[postaction={decorate}] (S) -- node[anchor=north, yshift=-5pt] {$(A)$} (E);      % Note the postaction that forces draw to use the decoration defined in the scope
+        \draw[postaction={decorate}] (S) -- node[pos=0.1, anchor=north, yshift=-2pt] {$(A)$} (E);      % Note the postaction that forces draw to use the decoration defined in the scope
         % For (B) we calculate the quadratic that is flat at the start and goes from (S) to (E) and plot it
         \draw[postaction={decorate}, domain=0:10, smooth, variable=\x] plot ({\x}, {-47 * \x * \x / 1000 + 0.7});
-        \draw[postaction={decorate}] (S) -- (SC) .. controls ($(SC) + (2,0)$) and ($(EC) + (0,3)$) ..  node[anchor=north, yshift=-5pt] {$(C)$} (EC);
-        \draw[postaction={decorate}] (SC) -- (SD) .. controls ($(SD) + (1.5,0)$) and ($(ED) + (0,1.5)$) ..  node[anchor=north, yshift=-5pt] {$(D)$} (ED) -- (EC);
-        \draw[postaction={decorate}] (SD) -- (SE) .. controls ($(SE) + (1,0)$) and ($(EE) + (0,1)$) ..  node[anchor=north, yshift=-5pt] {$(E)$} (EE) -- (ED);
+        \node at (3.5,-0.2) {$(B)$};
+
+        \draw[postaction={decorate}] (S) -- (SC) .. controls ($(SC) + (2,0)$) and ($(EC) + (0,3)$) ..  node[pos=0.35, anchor=north, yshift=-2pt] {$(C)$} (EC);
+        \draw[postaction={decorate}] (SC) -- (SD) .. controls ($(SD) + (1.5,0)$) and ($(ED) + (0,1.5)$) ..  node[pos=0.55, anchor=north, yshift=-2pt] {$(D)$} (ED) -- (EC);
+        \draw[postaction={decorate}] (SD) -- (SE) .. controls ($(SE) + (1,0)$) and ($(EE) + (0,1)$) ..  node[pos=0.95, anchor=west, xshift=-2pt] {$(E)$} (EE) -- (ED);
     \end{scope}
 \end{tikzpicture}
