@@ -13,10 +13,18 @@
    \draw[thick, ->] (1.5,0.2) -- node[anchor=south] {$\vec{v}$} (2.5,0.2);
 
    \coordinate (P) at (0,0);
+   \coordinate (C) at (4,-3);
 
    \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
       \draw[postaction={decorate}] (P) -- node[anchor=east] {$(B)$} (0,-3);
-      \draw[postaction={decorate}] (P) -- node[anchor=east, xshift=-4pt] {$(C)$} (3.5,-3);
+      \draw[postaction={decorate}] (P) -- node[anchor=east, xshift=-4pt] {$(C)$} (C);
+   \end{scope}
+
+   % Path E in three parts to get the arrow right
+   \begin{scope}[decoration={markings, mark=at position 0.65 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
+      \draw (P) -- ++ (3.5,0) coordinate (E1);
+      \draw[postaction={decorate}] (E1) node[anchor=south west, xshift=4pt, yshift=-4pt] {$(E)$} arc (90:0:0.5) coordinate (E2);
+      \draw (E2) -- (C);
    \end{scope}
 
 
