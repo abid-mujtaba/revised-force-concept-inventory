@@ -4,19 +4,19 @@
    \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
    \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
 
-   \draw[thick] (-4,0) -- (4,0);
+   \draw[thick] (-4,-3) -- (4,-3);
 
-   \node[scale=0.2] at (0,3) {%
+   \node[scale=0.2] at (0,0.3) {%
       \input{diag/plane-svg}
    };
 
-   \draw[thick, ->] (1.5,2.9) -- node[anchor=south] {$\vec{v}$} (2.5,2.9);
+   \draw[thick, ->] (1.5,0.2) -- node[anchor=south] {$\vec{v}$} (2.5,0.2);
 
-   \coordinate (P) at (0,2.7);
+   \coordinate (P) at (0,0);
 
    \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
-      \draw[postaction={decorate}] (P) -- node[anchor=east] {$(B)$} (0,0);
-      \draw[postaction={decorate}] (P) -- node[anchor=east, xshift=-4pt] {$(C)$} (3.5,0);
+      \draw[postaction={decorate}] (P) -- node[anchor=east] {$(B)$} (0,-3);
+      \draw[postaction={decorate}] (P) -- node[anchor=east, xshift=-4pt] {$(C)$} (3.5,-3);
    \end{scope}
 
 
