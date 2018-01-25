@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+   ***************************************************************************
+   Bundesanstalt fuer Strassenwesen
+   RWBA-Symbol
+   Bezeichnung:
+   Lastkraftwagen
+   Ausdehnung in cm:
+         X_min     X_max     Y_min     Y_max
+         0.00000  15.00000   0.00000  15.00000
+-->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="107.5"
+   height="55"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="truck.svg">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview8"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.5733333"
+     inkscape:cx="52.5"
+     inkscape:cy="30"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <!--
+   ***************************************************************************
+-->
+  <!--
+      * SYMBOL LKW *
+-->
+  <path
+     d="m 77.5,8.75 21.66375,1.353969 a 2.5,2.5 0 0 1 2.18487,1.617322 l 5.51467,14.705874 A 10,10 0 0 1 107.5,29.9384 l 0,13.8116 a 2.5,2.5 0 0 1 -2.5,2.5 l -1.25,0 A 11.25,11.25 0 0 0 86.875,36.507214 11.25,11.25 0 0 0 81.25,46.25 l -45,0 A 11.25,11.25 0 0 0 32.071068,37.5 L 77.5,37.5 77.5,8.75 z m 8.75,16.875 0,-12.5 12.63187,0.789534 a 1.25,1.25 0 0 1 1.09244,0.808662 l 4.1903,11.1742 a 1.25,1.25 0 0 1 -1.31646,1.680342 L 86.25,25.625 z m -2.5,20.625 a 8.75,8.75 0 0 1 13.125,-7.577722 8.75,8.75 0 0 1 0,15.155442 A 8.75,8.75 0 0 1 83.75,46.25 m -67.5,0 a 8.75,8.75 0 0 1 13.125,-7.577722 8.75,8.75 0 0 1 0,15.155442 A 8.75,8.75 0 0 1 16.25,46.25 z m -8.75,0 -7.5,-2.5 0,-6.25 17.928932,0 A 11.25,11.25 0 0 0 13.75,46.25 l -6.25,0 z M 0,35 0,0 72.5,0 72.5,35 0,35 z"
+     id="path6"
+     inkscape:connector-curvature="0"
+     style="fill:#000000;fill-rule:evenodd;stroke:none" />
+  <!--
+       * FAHRERHAUS *
+       * FENSTER *
+       * RAEDER *
+       * FAHRGESTELL HECK *
+       * AUFBAU *
+-->
+</svg>
