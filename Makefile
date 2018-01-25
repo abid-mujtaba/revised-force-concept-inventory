@@ -40,7 +40,7 @@ diag/%-svg.tex: diag/svg/%.svg
 
 
 # Explicit dependence of the built pdf files on the tex files. If the tex file is change we delete the corresponding pdf to force latex to build it again
-build/%.pdf: diag/%.tex
+build/%.pdf: diag/%.tex diag/%-svg.tex
 		rm -f $@
 		rm -f $(MAIN).pdf
 
@@ -52,6 +52,8 @@ clean:
 		rm -f *.fmt *.bbl *.blg *.aux *.end *.fls *.log *.out *.fdb_latexmk
 		rm -f *.eps *-converted-to.pdf
 		rm -f *.bib
+		rm -f diag/*-svg.tex
+		rm -f build/*
 
 
 debug:
