@@ -6,7 +6,7 @@
 
    \draw[thick] (-4,-3) -- (4,-3);
 
-   \node[scale=0.2] at (0,0.3) {%
+   \node[scale=0.2] at (-0.3,0.235) {%
       \input{diag/plane-svg}
    };
 
@@ -18,6 +18,13 @@
    \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
       \draw[postaction={decorate}] (P) -- node[anchor=east] {$(B)$} (0,-3);
       \draw[postaction={decorate}] (P) -- node[anchor=east, xshift=-4pt] {$(C)$} (C);
+
+      % NOTE: if one uses 'smooth' instead of 'samples=500' one gets a 'dimension is too large' error
+      \draw[postaction={decorate}, domain=0:-3, samples=500, variable=\x] plot({\x}, {-1 * \x * \x / 3});
+      \node at (-2.2,-1) {$(A)$};
+
+      \draw[postaction={decorate}, domain=0:4, samples=500, variable=\x] plot({\x}, {-3 * \x * \x / 16});
+      \node at (2.6,-0.8) {$(D)$};
    \end{scope}
 
    % Path E in three parts to get the arrow right
