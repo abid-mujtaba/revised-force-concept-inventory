@@ -20,3 +20,6 @@ local.properties
 
 # Ignore tex diagrams generated from svg
 diag/*-svg.tex
+
+# Ignore endnotes generated file
+*.ent
