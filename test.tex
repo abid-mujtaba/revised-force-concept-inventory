@@ -280,12 +280,25 @@
     \end{mcq}
     \answer{18}{B}
 
+    % NOTE: Use of minipage, H in figure, and negative vertical space to pull figure up. Requires the 'float' package.
+    \eline[-5]
+    \begin{minipage}{\textwidth}
+        \begin{figure}[H]
+            \begin{center}
+                \input{diag/swing}
+                \caption{\label{fig:swing} Boy on a swing.}
+            \end{center}
+        \end{figure}
+    \end{minipage}
+
     \begin{figure}[h!]
         \begin{center}
             \input{diag/swing}
             \caption{\label{fig:swing} Boy on a swing.}
         \end{center}
     \end{figure}
+
+
 
     \begin{mcq}{Q.25}{A woman exerts a constant \textbf{horizontal} force on a large box. As a result, the box moves across a horizontal force with constant speed.
    
