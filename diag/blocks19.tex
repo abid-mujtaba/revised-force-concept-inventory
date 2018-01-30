@@ -1,8 +1,26 @@
 \tikzsetnextfilename{blocks19}
 
+\input{diag/blocks-base}
+
 \begin{tikzpicture}[scale=0.5]
     \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
     \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
 
-    \input{diag/blocks-scale}
+    \scale      % Create the scale defined in 'blocks-base'
+
+    % Place blocks in line above
+    % NOTE how we iterated over a pair of values using the / separator
+    \foreach \n / \p in {1/2, 2/4, 3/7, 4/11, 5/16, 6/22, 7/29} {%
+
+        \block[xshift=\p, yshift=0.85]
+        \node[anchor=south, scale=0.8, yshift=5pt] at (\p, 1) {$\n$};
+    }
+
+    % Place blocks in line below
+    \foreach \n / \p in {1/0, 2/4, 3/8, 4/12, 5/16, 6/20, 7/24, 8/28} {%
+        
+        \block[xshift=\p, yshift=-0.85]
+        \node[anchor=north, scale=0.8, yshift=-5pt] at (\p, -1) {$\n$};
+    }
+    
 \end{tikzpicture}
