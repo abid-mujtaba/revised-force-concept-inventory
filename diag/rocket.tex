@@ -1,0 +1,31 @@
+\tikzsetnextfilename{rocket}
+
+\begin{tikzpicture}
+    \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
+    \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
+
+    \fill[black]
+        (0,0) coordinate (a) circle[radius=0.1]
+        (10,0) coordinate (b) circle[radius=0.1]
+    ;
+
+    \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]     % All lines in this scope have an arrow in the middle
+
+        \draw[postaction=decorate]
+            (a) node[anchor=north, yshift=-5pt] {$a$} -- (b) node[anchor=north, yshift=-5pt] {$b$}
+        ;
+
+    \end{scope}
+
+    \begin{scope}[xshift=110,yshift=20,yscale=-1,scale=0.3,xscale=0.8]
+
+        % Note how we drew the rocket with black border but white fill using \filldraw
+        \filldraw[fill=white, draw=black] (0,0) -- (1,1) -- (1,4) -- (-1,4) -- (-1,1) -- (0,0);
+
+        \fill[black] (0.4,4) rectangle (-0.4,4.25);
+
+        \draw (-0.4,4.25) -- (-1,4.75) -- (1,4.75) -- (0.4,4.25);
+
+    \end{scope}
+
+\end{tikzpicture}
