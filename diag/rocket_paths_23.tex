@@ -1,0 +1,57 @@
+\tikzsetnextfilename{rocket_paths_23}
+
+% Define the incoming path which is common to all options
+\newdrawing{\incoming}{%
+    \fill[black] (0,0) circle[radius=0.1];
+    \node[anchor=east, xshift=-5pt] at (0,0) {$c$};
+}
+
+
+\begin{tikzpicture}
+    \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
+    \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
+
+    \newdimen{\ymax}            % Max height of each sub-figure
+    \setlength{\ymax}{2cm} 
+
+    \newdimen{\sep}             % xshift between successive figures
+    \setlength{\sep}{3.75cm}
+
+    \incoming
+    \begin{arrowed}{0.6}
+        \draw[postaction=decorate] (0,0) -- (1.5,0); 
+        \node[anchor=south, yshift=5pt] at (1.5,2) {$(A)$};
+    \end{arrowed}
+    
+    \begin{scope}[xshift=\sep]
+        \incoming
+        \begin{arrowed}{0.6}
+            \draw[postaction=decorate] (0,0) -- (1,\ymax) node[anchor=south, yshift=5pt] {$(B)$};
+        \end{arrowed}
+    \end{scope}
+
+    \begin{scope}[xshift={(\sep * 2)}]
+        \incoming
+        \begin{arrowed}{0.6}
+            \draw[postaction=decorate] (0,0) -- (0,\ymax) node[anchor=south, yshift=5pt] {$(C)$};
+        \end{arrowed}
+    \end{scope}
+
+    \begin{scope}[xshift={(\sep * 2.75)}]
+        \incoming
+        \begin{arrowed}{0.6}
+            \draw[postaction=decorate, domain=0:1.5, samples=500, variable=\x] plot({\x}, {-\x * \x + 17 / 6 * \x});
+        \end{arrowed}
+        \node[anchor=south, yshift=5pt] at (1.5,2) {$(D)$};
+    \end{scope}
+
+    \begin{scope}[xshift={(\sep * 3.75)}]
+        \incoming
+        \begin{arrowed}{0.6}
+            \draw[postaction=decorate, domain=0:1.5, samples=500, variable=\x] plot({\x}, {\x * \x - \x / 6});
+        \end{arrowed}
+        \node[anchor=south, yshift=5pt] at (1.5,2) {$(E)$};
+    \end{scope}
+
+
+\end{tikzpicture}
