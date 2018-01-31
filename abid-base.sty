@@ -97,3 +97,13 @@
 
 % Command for entering a single empty line
 \newcommand{\eline}[1][1]{\vspace{#1\baselineskip}}
+
+
+% Define an 'arrowed' environment for placing arrow on a path in tikz
+\newenvironment{arrowed}[1]%
+    {
+        \begin{scope}[decoration={markings, mark=at position #1 with {\arrow{>}}}] 
+    }
+    {
+        \end{scope}
+    }
