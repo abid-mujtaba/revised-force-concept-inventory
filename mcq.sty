@@ -1,48 +1,10 @@
 % We define all style related instructions for formating Quizzes inside this package
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{quiz}[2015/09/08]
+\ProvidesPackage{mcq}[2018/01/31]
 
 % Declare abid-base as a dependency so that all of its packages and commands are pulled in
 \usepackage{abid-base}
-
-% Declare all the packages used in addition to the ones in abid-base
-
-
-% We provide definition of commands that are used in all Quizzes
-
-\makeatletter       % We use this command because we want to refer to variables in our definition that contain the character @
-
-% We declare new variables which will be used in the title
-\def\@course{}      % The variables with @ in them are global and are used inside the \maketitle macro
-\def\@quiznumber{}
-\def\@quizdate{}
-\def\@nostudentinfo{}
-\newcommand{\course}[1]{\def\@course{#1}}       % We declare the \course command to be a means of setting the value of the \@course variable so that \@course is hidden from the end-user
-\newcommand{\quiznumber}[1]{\def\@quiznumber{#1}}
-\newcommand{\quizdate}[1]{\def\@quizdate{#1}}
-\newcommand{\nostudentinfo}[0]{\def\@nostudentinfo{1}}      % Make it not-empty
-
-% We customize the \maketitle command to make it generate the content that we want
-% Note the use of makebox to place the date and course title on the either side of the Quiz number in the center
-% The use of [l] and [r] to explicitly specify the text-alignment inside makebox makes it align with the edges of the page.
-\renewcommand{\maketitle}{
-    \makebox[0.2\linewidth][l]{\@quizdate} \hfill {\centering \Huge Quiz \@quiznumber} \hfill \makebox[0.2\linewidth][r]{\@course}\\[1.5\baselineskip]
-    \ifx\@nostudentinfo\empty      % This means the \nostudentinfo was not called and so student info is to be gathered
-        {Name: \rule{15em}{.5pt} \hfill Registration ID: \rule{15em}{.5pt}}\\
-    \else
-    \fi
-
-    \eline
-}
-
-% Provide a new \makesolution command which sets up the final section for providing the solution to the quiz
-\newcommand{\makesolution}{
-    \vspace{0.5\baselineskip}
-    \begin{center}\rule{0.8\linewidth}{0.5pt}\end{center}
-    \vspace{0.5\baselineskip}
-    \textbf{\large Solution:}
-}
 
 % Define a command for entering questions. It uses a tabularx to format the Q.# part and the actual question
 % @{} is used to indicate that horizontal padding is to be zero around the tabularx
