@@ -11,7 +11,7 @@
         \input{diag/person-top-svg}
     };
 
-    \draw[fill=black] (-45:\rc) coordinate (ball) circle (4pt);
+    \draw[fill=black] (-45:\rc) coordinate (ball) circle (4pt) node [anchor=north, yshift=-5pt] {$P$};
     \draw (0.52,-0.52) -- (ball);
 
     \draw[dashed, ->] (ball) arc (-45:0:\rc) coordinate (a1);
