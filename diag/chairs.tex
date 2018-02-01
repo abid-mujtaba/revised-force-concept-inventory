@@ -1,0 +1,14 @@
+\tikzsetnextfilename{chairs}
+
+\begin{tikzpicture}
+   \tikzset{every picture/.style=semithick}        % Set default thickness to 'semithick'
+   \tikzset{>={Stealth[scale=1.3]}}      % Set the default style for arrows
+
+   \node[scale=0.3] at (0,0) {%
+      \input{diag/chairs-svg}
+   };
+
+   \node at (-1.9,3) {$P$};
+   \node at (2.2,3) {$Q$};
+
+\end{tikzpicture}
