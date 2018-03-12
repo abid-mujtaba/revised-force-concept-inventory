@@ -2,6 +2,7 @@
 A script for extracting answers from the specified test file (LaTeX) and storing it in the specified .csv file.
 """
 
+import csv
 import re
 import sys
 
@@ -10,14 +11,21 @@ re_ans = re.compile(r"\\answer{(\d+)}{(\w)}")
 
 def main(latex_file, csv_file):
 
-	with open(latex_file) as fin:
+	with open(csv_file, 'w', newline='') as fout:
 
-		for lin in fin.readlines():
+		fieldnames = ['question', 'answer']
 
-			m = re_ans.match(lin.strip())
+		writer = csv.DictWriter(fout, fieldnames=fieldnames)
+		writer.writeheader()
 
-			if m:
-				print("Answer to {0}: {1}".format(m.group(1), m.group(2)))
+		with open(latex_file) as fin:
+
+			for lin in fin.readlines():
+
+				m = re_ans.match(lin.strip())
+
+				if m:
+					writer.writerow({'question': m.group(1), 'answer': m.group(2)})
 
 
 
