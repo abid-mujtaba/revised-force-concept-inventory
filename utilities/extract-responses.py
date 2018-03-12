@@ -6,7 +6,22 @@ import csv
 import sys
 
 
-def main(raw_file, out_file):
+def main(raw_file, out_file, qid_file=None):
+
+	#
+	Q = {}
+
+	if qid_file:
+		
+		with open(qid_file, newline='') as fin:
+			
+			reader = csv.DictReader(fin)
+
+			for row in reader:
+
+				Q[row['q'] = row['qid']
+
+	
 
 	with open(out_file, 'w', newline='') as fout:
 		
@@ -31,6 +46,9 @@ def main(raw_file, out_file):
 					D['id'] = count
 					D['qid'] = row['questionnaire_id']
 
+					if D['qid'] == 'None':
+						raise ValidationError("Questionnaire ID is missing for row {}".format(count))
+
 					writer.writerow(D)
 				
 
@@ -47,10 +65,14 @@ class ValidationError(Exception):
 
 if __name__ == '__main__':
 
-	if len(sys.argv) != 3:
+	if len(sys.argv) == 3:
 		
+		main(sys.argv[1], sys.argv[2])
+
+	elif len(sys.argv) == 4:
+
+		main(sys.argv[1], sys.argv[2], sys.argv[3])
+	
+	else:
 		print("Error - Correct command usage is: python3 extract-respones.py <raw csv> <output csv>")
 
-	else:
-
-		main(sys.argv[1], sys.argv[2])
