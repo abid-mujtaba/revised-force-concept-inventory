@@ -62,9 +62,9 @@ def main(raw_file, out_file, qid_file=None):
 				except ValidationError as e:
 					print("ValidationError: " + str(e))
 
-				# TODO Remove to iterate over all rows
-				# break
 				print(R.dict())
+				# TODO Remove to iterate over all rows
+				break
 
 
 class Row:
@@ -109,7 +109,38 @@ class Row:
 			else:
 				raise ValidationError("Questionnaire ID is missing for row {}".format(count))
 
+		# Now we pop the first two entries (questionnaire and global id)
+		row.popitem(last=False)
+		row.popitem(last=False)
+
+		# We convert the remaining entries in to integers rather than strings for ease of processing (and boolean analysis)
+		for key in row.keys():
+			row[key] = int(row[key])
+
+		semester = self.extract_semester()
+
+		D['rid'] = "BCS-{0}{1}-{2}".format(semester, '', '')
+
 		self.D = D
+
+
+	def extract_semester(self):
+		"""
+		Extract semester (FA/SP) in student id
+					semester = extract_single(count, row, '1_2', ['SP', 'FA'])
+		"""
+		
+		row = self.row
+
+		sp = row['1_2_1_0']
+		fa = row['1_2_2_0']
+
+		if sp ^ fa:
+			return 'SP' if sp else 'FA'
+			
+		else:
+			raise ValidationError("Incorrect semester choice (FA/SP) in row: {}".format(self.id))
+
 
 
 def extract_single(id, row, prefix, entries, checkZero = True):
