@@ -42,18 +42,8 @@ def main(raw_file, out_file, qid_file=None):
 				count += 1
 
 				try:
-					# Process row to construct dictionary for the writer
-					D['id'] = count
-					D['qid'] = row['questionnaire_id'][3:]		# Remove the 'FCI' substring at the start
-
-					if row['questionnaire_id'] == 'None':
-
-						if count in Q:
-
-							D['qid'] = Q[count]
-
-						else:
-							raise ValidationError("Questionnaire ID is missing for row {}".format(count))
+					
+					R = Row(count, row, Q)
 
 					lten = [x for x in range(10)]		# List of the first ten digits
 
@@ -63,17 +53,63 @@ def main(raw_file, out_file, qid_file=None):
 					year = 10 * extract_single(count, row, '1_3', [0,1,2])
 					year += extract_single(count, row, '1_4', lten)
 
+					roll = 'XXX'
 					D['rid'] = "BCS-{0}{1}-{2}".format(semester, year, roll) 
 
 					# Write extracted dictionary to output csv file
-					writer.writerow(D)
+					writer.writerow(R.dict())
 				
 				except ValidationError as e:
 					print("ValidationError: " + str(e))
 
 				# TODO Remove to iterate over all rows
 				# break
-				print(D)
+				print(R.dict())
+
+
+class Row:
+	"""
+	An object based on the input csv row which is capable of extracting information from the complicated structure of the sdaps csv output.
+	"""
+
+	def __init__(self, count, csv_row, qids):
+
+		self.id = count
+		self.row = csv_row
+		self.qids = qids
+
+		self.extract()
+
+
+	def dict(self):
+		"""
+		Return the extracted information as a dicitonary.
+		"""
+		return self.D
+
+
+	def extract(self):
+		"""
+		Extract the information from the csv row.
+		"""
+
+		D = {}
+		row = self.row
+		Q = self.qids
+
+		D['id'] = self.id
+		D['qid'] = row['questionnaire_id'][3:]		# Remove the 'FCI' substring at the start
+
+		if row['questionnaire_id'] == 'None':
+
+			if self.id in Q:
+
+				D['qid'] = Q[self.id]
+
+			else:
+				raise ValidationError("Questionnaire ID is missing for row {}".format(count))
+
+		self.D = D
 
 
 def extract_single(id, row, prefix, entries, checkZero = True):
