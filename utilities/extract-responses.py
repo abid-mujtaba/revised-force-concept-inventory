@@ -48,8 +48,6 @@ def main(raw_file, out_file, qid_file=None):
 					lten = [x for x in range(10)]		# List of the first ten digits
 
 					# Construct Student Registration ID
-					semester = extract_single(count, row, '1_2', ['SP', 'FA'])
-
 					year = 10 * extract_single(count, row, '1_3', [0,1,2])
 					year += extract_single(count, row, '1_4', lten)
 
@@ -118,6 +116,7 @@ class Row:
 			row[key] = int(row[key])
 
 		semester = self.extract_semester()
+		year = self.extract_year()
 
 		D['rid'] = "BCS-{0}{1}-{2}".format(semester, '', '')
 
@@ -127,7 +126,6 @@ class Row:
 	def extract_semester(self):
 		"""
 		Extract semester (FA/SP) in student id
-					semester = extract_single(count, row, '1_2', ['SP', 'FA'])
 		"""
 		
 		row = self.row
@@ -140,6 +138,17 @@ class Row:
 			
 		else:
 			raise ValidationError("Incorrect semester choice (FA/SP) in row: {}".format(self.id))
+
+
+	def extract_year(self):
+		"""
+		Extract year in student id
+		"""
+
+		row = self.row
+
+		# TODO Implement another class which allows a single value to be pushed (multiple pushes, without popping is an exception) and popped
+		# Use this to traverse items which allow only a single value
 
 
 
