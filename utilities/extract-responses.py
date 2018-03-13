@@ -8,7 +8,7 @@ import sys
 
 def main(raw_file, out_file, qid_file=None):
 
-	#
+	# Read the qid_file and store the provided qids in a dictionary for later use
 	Q = {}
 
 	if qid_file:
@@ -19,7 +19,7 @@ def main(raw_file, out_file, qid_file=None):
 
 			for row in reader:
 
-				Q[row['q'] = row['qid']
+				Q[int(row['q'])] = row['qid']
 
 	
 
@@ -44,17 +44,21 @@ def main(raw_file, out_file, qid_file=None):
 				try:
 					# Process row to construct dictionary for the writer
 					D['id'] = count
-					D['qid'] = row['questionnaire_id']
+					D['qid'] = row['questionnaire_id'][3:]		# Remove the 'FCI' substring at the start
 
-					if D['qid'] == 'None':
-						raise ValidationError("Questionnaire ID is missing for row {}".format(count))
+					if row['questionnaire_id'] == 'None':
+
+						if count in Q:
+
+							D['qid'] = Q[count]
+
+						else:
+							raise ValidationError("Questionnaire ID is missing for row {}".format(count))
 
 					writer.writerow(D)
 				
-
 				except ValidationError as e:
 					print("ValidationError: " + str(e))
-
 
 
 class ValidationError(Exception):
