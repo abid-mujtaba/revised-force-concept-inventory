@@ -1,2 +1,5 @@
 .Rhistory
+
+# Ignore generated files
 answers.csv
+*-responses.csv
