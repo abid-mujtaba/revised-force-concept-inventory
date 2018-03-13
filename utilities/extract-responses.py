@@ -55,9 +55,15 @@ def main(raw_file, out_file, qid_file=None):
 						else:
 							raise ValidationError("Questionnaire ID is missing for row {}".format(count))
 
+					lten = [x for x in range(10)]		# List of the first ten digits
+
 					# Construct Student Registration ID
 					semester = extract_single(count, row, '1_2', ['SP', 'FA'])
-					D['rid'] = semester
+
+					year = 10 * extract_single(count, row, '1_3', [0,1,2])
+					year += extract_single(count, row, '1_4', lten)
+
+					D['rid'] = "BCS-{0}{1}-{2}".format(semester, year, roll) 
 
 					# Write extracted dictionary to output csv file
 					writer.writerow(D)
@@ -67,6 +73,7 @@ def main(raw_file, out_file, qid_file=None):
 
 				# TODO Remove to iterate over all rows
 				# break
+				print(D)
 
 
 def extract_single(id, row, prefix, entries, checkZero = True):
